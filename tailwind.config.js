@@ -4,14 +4,14 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        "fade-in": "fadeIn 0.15s ease-in-out",
+          wiggle: 'wiggle 2s linear infinite',
       },
-      keyframes: () => ({
-        fadeIn: {
-          "0%": { opacity: 0 },
-          "100%": { opacity: 1 },
-        },
-      }),
+      keyframes: {
+        wiggle: {
+          'from': { transform: 'scale(0.9)' },
+          'to': { transform: 'scale(0.8)' },      
+        }
+      },
     },
   },
   plugins: [],
