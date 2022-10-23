@@ -4,12 +4,12 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-          wiggle: 'wiggle 2s linear infinite',
+          wiggle: 'wiggle 0.5s alternate infinite',
       },
       keyframes: {
         wiggle: {
-          'from': { transform: 'scale(0.9)' },
-          'to': { transform: 'scale(0.8)' },      
+          'from': { transform: 'scale(1)' },
+          'to': { transform: 'scale(0.9)' },      
         }
       },
     },

@@ -24,51 +24,56 @@ import {
 
 
 function App() {
-  const [topimageWidth, setTopimagewidth] = useState(9);
+  const [topimageWidth, setTopimagewidth] = useState(250);
   const [secondimageWidth, setSecondimagewidth] = useState(1);
+  const[cubewidth, setCubewidth]= useState(0);
   const ref = useRef();
   const onScroll = () => {
-    console.log("first-----------------");
     const Scrolled = document.documentElement.scrollTop;
     const MaxHeight =
       document.documentElement.scrollHeight -
       document.documentElement.clientHeight;
     const ScrollPercent = (Scrolled / MaxHeight) * 100;
+    // console.log(ScrollPercent)
 
     if (ScrollPercent < 11) {
-      setTopimagewidth(9);
-    } else if (ScrollPercent < 13) {
+      setTopimagewidth(250);
+    } else if (ScrollPercent < 11) {
       setTopimagewidth(0);
       setSecondimagewidth(1);
     } else if (ScrollPercent < 23) {
       setSecondimagewidth(1);
     } else if (ScrollPercent > 95) {
-      setSecondimagewidth(9);
-    } else if (ScrollPercent > 70) {
+      setSecondimagewidth(250);
+    } else if (ScrollPercent > 68) {
       setSecondimagewidth(1);
+      setCubewidth(1)
     } else if (ScrollPercent > 52) {
-      setSecondimagewidth(9);
+      setSecondimagewidth(250);
+      setCubewidth(9)
     } else if (ScrollPercent > 40) {
       setSecondimagewidth(1);
+      setCubewidth(1);
     } else if (ScrollPercent > 23) {
-      setSecondimagewidth(9);
+      setSecondimagewidth(250);
     }
   };
   useEffect(() => {
     window.addEventListener("scroll", onScroll);
   }, []);
   return (
-    <div>
 
+    <div>
+      {/* <SmothScrolling /> */}
       <ScrollContainer>
         <ScrollPage page={0}>
           <Animator animation={batch(Sticky(50, -50), MoveOut(0, 1100))}>
             <img
               src="./Images/topdesign1.png"
-              style={{ transform: `scale(0.${topimageWidth})` }}
+              // style={{ transform: `scale(0.${topimageWidth})` }}
               className={`transition-all animate-wiggle duration-[200ms] ease-linear`}
               alt=""
-              width={250}
+              width={topimageWidth}
             />
           </Animator>
         </ScrollPage>
@@ -108,10 +113,10 @@ function App() {
           >
             <img
               src="./Images/2ndpgdesign.png"
-              style={{ transform: `scale(0.${secondimageWidth})` }}
+              // style={{ transform: `scale(0.${secondimageWidth})` }}
               className={`transition-all animate-wiggle duration-[500ms] ease-in`}
               alt=""
-              width={250}
+              width={secondimageWidth}
               
             />
           </Animator>
@@ -131,7 +136,6 @@ function App() {
               THAT FILTERS CONTENT
             </p>
           </Animator>
-      {/* <SmothScrolling /> */}
 
           <Animator
             animation={batch(Sticky(50, 85), MoveOut(0, -1000), FadeIn())}
@@ -148,14 +152,14 @@ function App() {
         <ScrollPage page={4}>
           <Animator
             animation={batch(
-              Sticky(50, 30),
+              Sticky(50, 20),
               FadeIn(),
               MoveIn(-10, 600),
               MoveOut(0, 300)
             )}
           >
             <div
-              style={{ transform: `scale(0.${secondimageWidth})` }}
+              style={{ transform: `scale(0.${cubewidth})` }}
               className={`flex flex-col justify-center items-center transition-all duration-[200ms] ease-linear`}
             >
               <div className="flex justify-center items-end gap-[2px]">
@@ -263,7 +267,7 @@ function App() {
                     className="transition-all duration-[500ms] ease-in"
                     alt=""
                     width={120}
-                    style={{ transform: `scale(0.${secondimageWidth})` }}
+                    // style={{ transform: `scale(0.${secondimageWidth})` }}
                   />
                 </div>
                 <div>
@@ -272,7 +276,7 @@ function App() {
                     className="transition-all  duration-[500ms]  ease-in"
                     alt=""
                     width={120}
-                    style={{ transform: `scale(0.${secondimageWidth})` }}
+                    // style={{ transform: `scale(0.${secondimageWidth})` }}
                   />
                 </div>
                 <div>
@@ -281,7 +285,7 @@ function App() {
                     className="transition-all duration-[500ms]   ease-in"
                     alt=""
                     width={120}
-                    style={{ transform: `scale(0.${secondimageWidth})` }}
+                    // style={{ transform: `scale(0.${secondimageWidth})` }}
                   />
                 </div>
               </div>
