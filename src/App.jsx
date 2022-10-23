@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState,useLayoutEffect } from "react";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import SmothScrolling from "./Components/SmothScrolling";
 
@@ -21,25 +21,29 @@ import {
   ZoomOut,
 } from "react-scroll-motion";
 
-
-
 function App() {
   const [topimageWidth, setTopimagewidth] = useState(250);
   const [secondimageWidth, setSecondimagewidth] = useState(1);
-  const[cubewidth, setCubewidth]= useState(0);
+  const [cubewidth, setCubewidth] = useState(0);
+  const [imageScale ,setImagescale]= useState(false);
+
   const ref = useRef();
-  const onScroll = () => {
+
+  const onScroll = (offset,height) => {
+    // e.preventDefault();
+    console.log('fdg')
     const Scrolled = document.documentElement.scrollTop;
     const MaxHeight =
       document.documentElement.scrollHeight -
       document.documentElement.clientHeight;
     const ScrollPercent = (Scrolled / MaxHeight) * 100;
-    // console.log(ScrollPercent)
-
-    if (ScrollPercent < 11) {
+    // console.log(ScrollPercent,'vsdjvjbs');
+    if (ScrollPercent < 10) {
       setTopimagewidth(250);
+      setImagescale(false);
     } else if (ScrollPercent < 11) {
       setTopimagewidth(0);
+      setImagescale(true);
       setSecondimagewidth(1);
     } else if (ScrollPercent < 23) {
       setSecondimagewidth(1);
@@ -47,10 +51,10 @@ function App() {
       setSecondimagewidth(250);
     } else if (ScrollPercent > 68) {
       setSecondimagewidth(1);
-      setCubewidth(1)
+      setCubewidth(1);
     } else if (ScrollPercent > 52) {
       setSecondimagewidth(250);
-      setCubewidth(9)
+      setCubewidth(9);
     } else if (ScrollPercent > 40) {
       setSecondimagewidth(1);
       setCubewidth(1);
@@ -58,22 +62,55 @@ function App() {
       setSecondimagewidth(250);
     }
   };
-  useEffect(() => {
-    window.addEventListener("scroll", onScroll);
-  }, []);
-  return (
 
-    <div>
-      {/* <SmothScrolling /> */}
+console.log(imageScale,'image saclae')
+
+  useEffect(()=>{
+    window.addEventListener("scroll", onScroll);
+      // setTimeout(()=>{
+      //   const body = document.body,
+      //     jsScroll = document.getElementsByClassName("js-scroll")[0],
+      //     height = jsScroll.getBoundingClientRect().height - 1,
+      //     speed = 0.05;
+    
+      //   var offset = 0;
+    
+      //   body.style.height = Math.floor(height) + "px";
+    
+      //   function smoothScroll() {
+      //     offset += (window.pageYOffset - offset) * speed;
+      //     var scroll = "translateY(-" + offset + "px) translateZ(0) ";
+      //     jsScroll.style.transform = scroll;
+      //     onScroll(offset,height)
+      //     let raf = requestAnimationFrame(smoothScroll);
+      //   }
+    
+      //   smoothScroll();
+      //   console.log(height, "height");
+      //   console.log(offset, "offset");
+      //   console.log(jsScroll.getBoundingClientRect().height, "vxv");
+      //   console.log(jsScroll, "sdfd");
+      // },2000)
+    },[])  
+  
+
+  // useLayoutEffect(() => {
+  //   console.log("hiiii");
+    
+  // }, []);
+  console.log(window.innerHeight,'lkk')
+  return (
+    <div >
+    <div className="relative z-50">
       <ScrollContainer>
         <ScrollPage page={0}>
-          <Animator animation={batch(Sticky(50, -50), MoveOut(0, 1100))}>
+          <Animator animation={batch(Sticky(50, -50), MoveOut(0, window.innerHeight*1.5))}>
             <img
               src="./Images/topdesign1.png"
               // style={{ transform: `scale(0.${topimageWidth})` }}
-              className={`transition-all animate-wiggle duration-[200ms] ease-linear`}
+              className={`transition-all ${imageScale ? `firstImage` : `animate-wiggle` }  duration-[200ms] ease-linear`}
               alt=""
-              width={topimageWidth}
+              width={250}
             />
           </Animator>
         </ScrollPage>
@@ -117,7 +154,6 @@ function App() {
               className={`transition-all animate-wiggle duration-[500ms] ease-in`}
               alt=""
               width={secondimageWidth}
-              
             />
           </Animator>
         </ScrollPage>
@@ -305,6 +341,7 @@ function App() {
           </Animator>
         </ScrollPage>
       </ScrollContainer>
+    </div>
     </div>
   );
 }

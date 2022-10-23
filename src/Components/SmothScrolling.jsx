@@ -13,7 +13,7 @@ var options = {
   damping: 0.07,
   plugins: {
     overscroll: { ...overscrollOptions },
-  },
+  }, 
 };
 
 const SmothScrolling = () => {

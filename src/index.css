@@ -17,3 +17,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.js-scroll {
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	width: 100%;
+	will-change: transform;
+}
+
+.firstImage{
+  transition: all;
+  transition-duration: 2s; 
+  transform: scale(0.2);
+  opacity: 0;
+}
