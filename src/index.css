@@ -30,7 +30,7 @@ code {
 
 .firstImage{
   transition: all;
-  transition-duration: 2s; 
-  transform: scale(0.2);
-  opacity: 0;
+  transition-duration: 500ms;
+  /* transform: scale(0.2); */
+  /* opacity: 0; */
 }
