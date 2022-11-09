@@ -1,5 +1,6 @@
-import { useRef, useEffect, useState,useLayoutEffect } from "react";
+import { useRef, useEffect, useState} from "react";
 
+import { Parallax } from "react-scroll-parallax";
 
 import {
   ScrollContainer,
@@ -27,7 +28,7 @@ function App() {
   const [imageScale ,setImagescale]= useState(false);
   const [topImagePadding ,setTopImagePadding] = useState(-40);
   const [secondImagePadding, setSecondimagePadding] = useState(90);
-  const [cubePadding, setCubepadding]  = useState(20);
+  const [cubePadding, setCubepadding]  = useState(90);
 
   const ref = useRef();
 
@@ -137,14 +138,13 @@ else if (ScrollPercent > 21) {
         <ScrollPage page={1} className='z-0'>
           <Animator
             animation={batch(
-              Sticky(70, 70),
-              MoveIn(500, 0),
-              MoveOut(0, -1000),
-              Fade()
+              StickyIn(78, 50),
+              FadeIn(),
+              FadeOut(0,-200)
             )}
           >
             <p
-              className={`text-3xl text-[#2a60a5] font-bold transition-all duration-[2500ms]`}
+              className={`text-3xl text-[#2a60a5] font-bold transition-all duration-[2500ms] whitespace-nowrap`}
             >
               A PURIFED ECOSYSTEM FOR WEB3
             </p>
@@ -180,10 +180,12 @@ else if (ScrollPercent > 21) {
         <ScrollPage page={3}>
           <Animator
             animation={batch(
-              Sticky(30, 70),
-              MoveIn(-300, 0),
-              MoveOut(0, -1000),
-              Fade()
+              Sticky(22, 50),
+
+              FadeIn(),
+              FadeOut(0,-200)
+
+
             )}  >
             <p
               className={`text-3xl text-[#2a60a5] font-bold transition-all duration-[2500ms] ease-in`}
@@ -281,18 +283,19 @@ else if (ScrollPercent > 21) {
           </Animator>
         </ScrollPage>
         <ScrollPage page={5}>
+        <Animator animation={batch(Sticky(78, 95),FadeIn(), FadeOut(0,-200))}>
+            <p
+              className={`text-3xl text-[#2a60a5] w-full font-bold transition-all duration-[2500ms] ease-in whitespace-nowrap`}
+            >
+              AND CREDITS LEGITIMACY
+            </p>
+          </Animator>
           <Animator
-            animation={batch(Sticky(50, 90), MoveOut(0, -600), FadeIn())}
+            animation={batch(Sticky(50, 88), MoveOut(0, -600), FadeIn() )}
           >
             <img src="./Images/cubebase.png" className="z-0" alt="" width={400} />
           </Animator>
-          <Animator animation={batch(Sticky(76, 90), MoveOut(0, -600), Fade())}>
-            <p
-              className={`text-3xl text-[#2a60a5] font-bold transition-all duration-[2500ms] ease-in`}
-            >
-              THAT FILTERS CONTENT
-            </p>
-          </Animator>
+
         </ScrollPage>
         <ScrollPage page={6}>
           <Animator
@@ -305,7 +308,7 @@ else if (ScrollPercent > 21) {
           ></Animator>
         </ScrollPage>
         <ScrollPage page={7}>
-          <Animator animation={batch(Sticky(50, 5))}>
+          <Animator animation={batch(Sticky(50, 7))}>
             <img
               src="./Images/bottomtop.png"
               className="transition-all   ease-in"
@@ -313,7 +316,7 @@ else if (ScrollPercent > 21) {
               width={400}
             />
           </Animator>
-          <Animator animation={batch(Sticky(50, 25), FadeIn())}>
+          <Animator animation={batch(Sticky(50, 30), FadeIn())}>
             <div className="w-full flex flex-col gap-4">
               <div className="flex justify-center items-center gap-4">
                 <div>
